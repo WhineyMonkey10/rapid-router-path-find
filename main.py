@@ -8,13 +8,14 @@ class movement():
   def move_forward(num):
     for i in range(num):
       my_van.move_forwards()
-  def turn(num, direction):
-    if direction == left:
-      for i in range(num):
+  def turn(dir, num):
+    for i in range(num):
+      if dir == "l":
         my_van.turn_left()
-    elif direction == right:
-      for i in range(num):
+      if dir == "r":
         my_van.turn_right()
+    
+      
   def auto_move():
     while True:
       if my_van.at_destination():
@@ -23,9 +24,9 @@ class movement():
       if my_van.is_road_forward():
         movement.move_forward(1)
       elif my_van.is_road_left():
-        movement.turn(1, left)
+        movement.turn("l",1)
       elif my_van.is_road_right():
-        movement.turn(1, right)
+        movement.turn("r",1)
       elif my_van.at_dead_end():
         my_van.turn_around()
 
