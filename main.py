@@ -18,7 +18,14 @@ class movement():
       
   def auto_move():
     while True:
-      if my_van.at_destination():
+      if my_van.at_red_traffic_light():
+        my_van.wait()
+        while True:
+          if my_van.at_green_traffic_light():
+            break
+          else:
+            my_van.wait()
+      elif my_van.at_destination():
         print("Arrived")
         break
       if my_van.is_road_forward():
@@ -30,11 +37,7 @@ class movement():
       elif my_van.at_dead_end():
         my_van.turn_around()
 
-      elif my_van.at_red_traffic_light():
-          my_van.wait()
-          while True:
-            my_van.at_green_traffic_light()
-            break
+
        
     
        
